@@ -16,10 +16,15 @@ import com.yammer.dropwizard.db.DatabaseConfiguration;
 import com.yammer.dropwizard.jdbi.DBIFactory;
 import com.yammer.dropwizard.migrations.MigrationsBundle;
 import org.skife.jdbi.v2.DBI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class MainService extends Service<MainConfiguration> {
 
+    private static final Logger LOG = LoggerFactory.getLogger(MainService.class);
+
     public static void main(final String[] args) throws Exception {
+        LOG.info("Staring service with arguments: {} {}", args[0], args[1]);
         new MainService().run(args);
     }
 

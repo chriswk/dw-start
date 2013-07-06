@@ -33,7 +33,7 @@ public class SystemUserAuthenticatorTest {
             new Token(1, 1, TokenType.ACCESS_TOKEN, token, yesterday, tomorrow));
         when(systemUserDAO.getById(1)).thenReturn(new SystemUser(1, yesterday, "tester@test.com", "abc", null, new Date()));
 
-        Optional<SystemUser> user = authenticator.authenticate(token);
+        final Optional<SystemUser> user = authenticator.authenticate(token);
 
         verify(systemUserDAO).getToken(token);
         verify(systemUserDAO).getById(1);
@@ -46,7 +46,7 @@ public class SystemUserAuthenticatorTest {
                 new Token(1, 1, TokenType.ACCESS_TOKEN, token, yesterday, tomorrow));
         when(systemUserDAO.getById(1)).thenReturn(null);
 
-        Optional<SystemUser> user = authenticator.authenticate(token);
+        final Optional<SystemUser> user = authenticator.authenticate(token);
         verify(systemUserDAO).getToken(token);
         verify(systemUserDAO).getById(1);
         assertThat(user.isPresent(), is(false));
@@ -58,7 +58,7 @@ public class SystemUserAuthenticatorTest {
         when(systemUserDAO.getToken(token)).thenReturn(
                 new Token(1, 1, TokenType.ACCESS_TOKEN, token, yesterday, yesterday));
 
-        Optional<SystemUser> user = authenticator.authenticate(token);
+        final Optional<SystemUser> user = authenticator.authenticate(token);
         verify(systemUserDAO).getToken(token);
         verifyNoMoreInteractions(systemUserDAO);
         assertThat(user.isPresent(), is(false));
@@ -68,7 +68,7 @@ public class SystemUserAuthenticatorTest {
     public void should_not_authenticate_invalid_token() throws AuthenticationException {
         when(systemUserDAO.getToken(token)).thenReturn(null);
 
-        Optional<SystemUser> user = authenticator.authenticate(token);
+        final Optional<SystemUser> user = authenticator.authenticate(token);
         verify(systemUserDAO).getToken(token);
         verifyNoMoreInteractions(systemUserDAO);
         assertThat(user.isPresent(), is(false));

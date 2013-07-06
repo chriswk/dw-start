@@ -15,7 +15,7 @@ public final class SystemUserResultMapper implements ResultSetMapper<SystemUser>
                 r.getDate("created"),
                 r.getString("email"),
                 r.getString("password"),
-                r.getDate("lastLogin"),
-                r.getDate("emailVerified"));
+                r.getDate("emailverified"),
+                r.getDate("lastlogin"));
     }
 }

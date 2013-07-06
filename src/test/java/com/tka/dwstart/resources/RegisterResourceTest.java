@@ -1,9 +1,9 @@
 package com.tka.dwstart.resources;
 
-import javax.ws.rs.WebApplicationException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Date;
+import javax.ws.rs.WebApplicationException;
 
 import com.tka.dwstart.api.AccessToken;
 import com.tka.dwstart.api.NewUser;
@@ -23,14 +23,14 @@ import static org.mockito.Mockito.when;
 
 public class RegisterResourceTest {
 
-    private SystemUserDAO systemUserDAO = mock(SystemUserDAO.class);
-    private RegisterResource registerResource = new RegisterResource(systemUserDAO, 100L);
-    private NewUser user = new NewUser("tester@test.com", "super$ecret", "super$ecret");
+    private final SystemUserDAO systemUserDAO = mock(SystemUserDAO.class);
+    private final RegisterResource registerResource = new RegisterResource(systemUserDAO, 100L);
+    private final NewUser user = new NewUser("tester@test.com", "super$ecret", "super$ecret");
 
     @Test
     public void should_register_user() throws InvalidKeySpecException, NoSuchAlgorithmException {
         when(systemUserDAO.exists(user.getEmail())).thenReturn(false);
-        AccessToken token = registerResource.register(user);
+        final AccessToken token = registerResource.register(user);
 
         verify(systemUserDAO).exists(user.getEmail());
         verify(systemUserDAO).create(anyString(), anyString());

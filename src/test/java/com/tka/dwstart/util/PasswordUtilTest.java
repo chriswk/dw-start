@@ -16,11 +16,11 @@ public class PasswordUtilTest {
     @Test
     public void should_generate_unique_and_valid_password_hashes() {
 
-        Set<String> passwords = new HashSet<>();
+        final Set<String> passwords = new HashSet<>();
         for (int i = 0; i < 100; i++) {
-            String password =  ""+i;
-            String hash = createHash(password);
-            String secondHash = createHash(password);
+            final String password =  ""+i;
+            final String hash = createHash(password);
+            final String secondHash = createHash(password);
 
             assertThat(hash, not(is(secondHash)));
             assertThat(validatePassword(password, hash), is(true));

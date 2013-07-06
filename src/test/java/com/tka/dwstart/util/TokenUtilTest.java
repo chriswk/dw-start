@@ -15,7 +15,7 @@ public class TokenUtilTest {
 
     @Test
     public void should_create_unique_tokens() {
-        Set<String> tokens = new HashSet<>();
+        final Set<String> tokens = new HashSet<>();
         for (int i = 0; i < 100; i++) {
             tokens.add(TokenUtil.createToken());
         }
@@ -24,9 +24,9 @@ public class TokenUtilTest {
 
     @Test
     public void should_get_expiry_date() {
-        DateTime now = DateTime.now();
-        Date expiry = TokenUtil.getExpiresFromNow(1000);
-        int interval = Seconds.secondsBetween(now, new DateTime(expiry)).getSeconds();
+        final DateTime now = DateTime.now();
+        final Date expiry = TokenUtil.getExpiresFromNow(1000);
+        final int interval = Seconds.secondsBetween(now, new DateTime(expiry)).getSeconds();
         assertThat(interval, is(1));
 
     }

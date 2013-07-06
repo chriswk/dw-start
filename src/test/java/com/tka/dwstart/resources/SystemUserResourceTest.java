@@ -15,7 +15,8 @@ public class SystemUserResourceTest {
 
     @Test
     public void should_return_logged_in_user() {
-        LoggedInUser user = new SystemUserResource().getUser(new SystemUser(0, new Date(),"tester@test.com", "super$ecret", null, null));
+        final LoggedInUser user = new SystemUserResource()
+                .getUser(new SystemUser(0, new Date(),"tester@test.com", "super$ecret", null, null));
         assertThat(user, not(nullValue()));
         assertThat(user.getEmail(), is("tester@test.com"));
     }
