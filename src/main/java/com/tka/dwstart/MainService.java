@@ -1,6 +1,7 @@
 package com.tka.dwstart;
 
 import com.tka.dwstart.auth.SystemUserAuthenticator;
+import com.tka.dwstart.config.MainConfiguration;
 import com.tka.dwstart.filters.UTF8EncodingFilter;
 import com.tka.dwstart.jdbi.DateAsTimestampArgument;
 import com.tka.dwstart.jdbi.SystemUserDAO;
@@ -15,6 +16,7 @@ import com.yammer.dropwizard.config.Environment;
 import com.yammer.dropwizard.db.DatabaseConfiguration;
 import com.yammer.dropwizard.jdbi.DBIFactory;
 import com.yammer.dropwizard.migrations.MigrationsBundle;
+import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,12 +49,19 @@ public final class MainService extends Service<MainConfiguration> {
 
         env.addFilter(UTF8EncodingFilter.class, "*");
 
-        env.addProvider(new OAuthProvider<>(
-                CachingAuthenticator.wrap(new SystemUserAuthenticator(systemUserDAO, config.getDefaultTokenTimeout()),
-                    config.getAuthenticationCachePolicy()), "systemuser"));
+        env.addFilter(CrossOriginFilter.class, "*")
+                .setInitParam(CrossOriginFilter.ALLOWED_ORIGINS_PARAM, config.getCORSConfiguration().getAllowedOrigins())
+                .setInitParam(CrossOriginFilter.ALLOWED_HEADERS_PARAM, config.getCORSConfiguration().getAllowedHeaders())
+                .setInitParam(CrossOriginFilter.ALLOWED_METHODS_PARAM, config.getCORSConfiguration().getAllowedMethods())
+                .setInitParam(CrossOriginFilter.ALLOW_CREDENTIALS_PARAM, config.getCORSConfiguration().getAllowedCredentials());
 
-        env.addResource(new RegistrationResource(systemUserDAO, config.getDefaultTokenTimeout()));
-        env.addResource(new AuthenticationResource(systemUserDAO, config.getDefaultTokenTimeout()));
+        env.addProvider(new OAuthProvider<>(
+                CachingAuthenticator.wrap(
+                        new SystemUserAuthenticator(systemUserDAO, config.getSecurityConfiguration().getDefaultTokenTimeout()),
+                        config.getSecurityConfiguration().getAuthenticationCachePolicy()), "systemuser"));
+
+        env.addResource(new RegistrationResource(systemUserDAO, config.getSecurityConfiguration().getDefaultTokenTimeout()));
+        env.addResource(new AuthenticationResource(systemUserDAO, config.getSecurityConfiguration().getDefaultTokenTimeout()));
         env.addResource(new SystemUserResource());
 
     }

@@ -1,7 +1,11 @@
 
-authenticationCachePolicy: maximumSize=1000, expireAfterAccess=1m
+security:
+  authenticationCachePolicy: maximumSize=1000, expireAfterAccess=1m
+  defaultTokenTimeout: 1200000
 
-defaultTokenTimeout: 1200000 #Default 60000
+cors:
+  allowedOrigins: http://localhost:9000
+  allowedCredentials: true
 
 http:
   rootPath: /api/*

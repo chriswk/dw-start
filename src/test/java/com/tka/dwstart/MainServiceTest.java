@@ -1,5 +1,6 @@
 package com.tka.dwstart;
 
+import com.tka.dwstart.config.MainConfiguration;
 import com.tka.dwstart.filters.UTF8EncodingFilter;
 import com.tka.dwstart.resources.AuthenticationResource;
 import com.tka.dwstart.resources.RegistrationResource;
