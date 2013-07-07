@@ -26,7 +26,7 @@ public interface SystemUserDAO extends Transactional<SystemUserDAO> {
     void updatePassword(@Bind("id") long id, @Bind("password") String password);
 
     @SqlUpdate("update systemuser set emailverified = :emailverified where id = :id")
-    void verifyEmail(@Bind("id") long id, @Bind("emailverfied") Date emailVerified);
+    void verifyEmail(@Bind("id") long id, @Bind("emailverified") Date emailVerified);
 
     @SqlQuery("select id, created, email, password, lastLogin, emailverified from systemuser where id = :id")
     SystemUser getById(@Bind("id") long id);

@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 import static com.tka.dwstart.util.TokenUtil.createToken;
 import static com.tka.dwstart.util.TokenUtil.getExpiresFromNow;
 
-@Path("/register")
+@Path("/user/register")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public final class RegisterResource {

@@ -24,7 +24,7 @@ import static com.tka.dwstart.util.PasswordUtil.validatePassword;
 import static com.tka.dwstart.util.TokenUtil.createToken;
 import static com.tka.dwstart.util.TokenUtil.getExpiresFromNow;
 
-@Path("/login")
+@Path("/user/login")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public final class LoginResource {

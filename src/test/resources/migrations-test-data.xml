@@ -6,6 +6,13 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
-    <include file="changelog-01.xml"/>
+    <changeSet id="test" author="tka">
+        <loadData tableName="systemuser" file="systemuser.csv"/>
+        <loadData tableName="token" file="token.csv"/>
+        <rollback>
+            <delete tableName="systemuser"/>
+            <delete tableName="token"/>
+        </rollback>
+    </changeSet>
 
 </databaseChangeLog>

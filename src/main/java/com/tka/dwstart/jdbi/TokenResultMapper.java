@@ -14,7 +14,7 @@ public final class TokenResultMapper implements ResultSetMapper<Token> {
                 r.getLong("userid"),
                 TokenType.valueOf(r.getString("tokentype")),
                 r.getString("token"),
-                r.getDate("created"),
-                r.getDate("expires"));
+                r.getTimestamp("created"),
+                r.getTimestamp("expires"));
     }
 }

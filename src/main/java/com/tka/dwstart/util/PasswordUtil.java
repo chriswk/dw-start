@@ -28,7 +28,6 @@ public final class PasswordUtil {
 
     //Constants numbers
     private static final int I_16 = 16;
-    private static final int I_10 = 10;
     private static final int I_8 = 8;
 
     /**

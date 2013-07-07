@@ -1,8 +1,8 @@
 package com.tka.dwstart.jdbi;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import org.junit.Test;
 import org.skife.jdbi.v2.StatementContext;
@@ -23,10 +23,10 @@ public class TokenResultMapperTest {
     public void should_map_token() throws SQLException {
         when(resultSet.getLong("id")).thenReturn(1L);
         when(resultSet.getLong("userid")).thenReturn(1L);
-        when(resultSet.getDate("created")).thenReturn(new Date(System.currentTimeMillis()));
+        when(resultSet.getTimestamp("created")).thenReturn(new Timestamp(System.currentTimeMillis()));
         when(resultSet.getString("token")).thenReturn("token");
         when(resultSet.getString("tokentype")).thenReturn(TokenType.ACCESS_TOKEN.name());
-        when(resultSet.getDate("expires")).thenReturn(new Date(System.currentTimeMillis()));
+        when(resultSet.getTimestamp("expires")).thenReturn(new Timestamp(System.currentTimeMillis()));
 
 
         final Token token = new TokenResultMapper().map(1, resultSet,context);

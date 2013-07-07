@@ -12,10 +12,10 @@ public final class SystemUserResultMapper implements ResultSetMapper<SystemUser>
     public SystemUser map(final int index, final ResultSet r, final StatementContext ctx) throws SQLException {
         return new SystemUser(
                 r.getLong("id"),
-                r.getDate("created"),
+                r.getTimestamp("created"),
                 r.getString("email"),
                 r.getString("password"),
-                r.getDate("emailverified"),
-                r.getDate("lastlogin"));
+                r.getTimestamp("emailverified"),
+                r.getTimestamp("lastlogin"));
     }
 }
