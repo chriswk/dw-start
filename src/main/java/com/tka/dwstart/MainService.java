@@ -4,8 +4,8 @@ import com.tka.dwstart.auth.SystemUserAuthenticator;
 import com.tka.dwstart.filters.UTF8EncodingFilter;
 import com.tka.dwstart.jdbi.DateAsTimestampArgument;
 import com.tka.dwstart.jdbi.SystemUserDAO;
-import com.tka.dwstart.resources.LoginResource;
-import com.tka.dwstart.resources.RegisterResource;
+import com.tka.dwstart.resources.AuthenticationResource;
+import com.tka.dwstart.resources.RegistrationResource;
 import com.tka.dwstart.resources.SystemUserResource;
 import com.yammer.dropwizard.Service;
 import com.yammer.dropwizard.auth.CachingAuthenticator;
@@ -51,8 +51,8 @@ public final class MainService extends Service<MainConfiguration> {
                 CachingAuthenticator.wrap(new SystemUserAuthenticator(systemUserDAO, config.getDefaultTokenTimeout()),
                     config.getAuthenticationCachePolicy()), "systemuser"));
 
-        env.addResource(new RegisterResource(systemUserDAO, config.getDefaultTokenTimeout()));
-        env.addResource(new LoginResource(systemUserDAO, config.getDefaultTokenTimeout()));
+        env.addResource(new RegistrationResource(systemUserDAO, config.getDefaultTokenTimeout()));
+        env.addResource(new AuthenticationResource(systemUserDAO, config.getDefaultTokenTimeout()));
         env.addResource(new SystemUserResource());
 
     }

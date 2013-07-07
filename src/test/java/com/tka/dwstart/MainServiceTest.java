@@ -1,8 +1,8 @@
 package com.tka.dwstart;
 
 import com.tka.dwstart.filters.UTF8EncodingFilter;
-import com.tka.dwstart.resources.LoginResource;
-import com.tka.dwstart.resources.RegisterResource;
+import com.tka.dwstart.resources.AuthenticationResource;
+import com.tka.dwstart.resources.RegistrationResource;
 import com.tka.dwstart.resources.SystemUserResource;
 import com.yammer.dropwizard.auth.oauth.OAuthProvider;
 import com.yammer.dropwizard.config.Bootstrap;
@@ -40,8 +40,8 @@ public final class MainServiceTest {
 
         verify(env).addFilter(UTF8EncodingFilter.class, "*");
         verify(env).addProvider(any(OAuthProvider.class));
-        verify(env).addResource(any(LoginResource.class));
-        verify(env).addResource(any(RegisterResource.class));
+        verify(env).addResource(any(AuthenticationResource.class));
+        verify(env).addResource(any(RegistrationResource.class));
         verify(env).addResource(any(SystemUserResource.class));
 
     }

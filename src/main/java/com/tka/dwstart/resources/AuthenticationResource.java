@@ -27,14 +27,14 @@ import static com.tka.dwstart.util.TokenUtil.getExpiresFromNow;
 @Path("/user/login")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public final class LoginResource {
+public final class AuthenticationResource {
 
-    private static final Logger LOG = LoggerFactory.getLogger(LoginResource.class);
+    private static final Logger LOG = LoggerFactory.getLogger(AuthenticationResource.class);
 
     private final SystemUserDAO systemUserDAO;
     private final long tokenTimout;
 
-    public LoginResource(final SystemUserDAO systemUserDAO, final long tokenTimout) {
+    public AuthenticationResource(final SystemUserDAO systemUserDAO, final long tokenTimout) {
         this.systemUserDAO = systemUserDAO;
         this.tokenTimout = tokenTimout;
     }

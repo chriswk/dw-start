@@ -21,16 +21,16 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class RegisterResourceTest {
+public class RegistrationResourceTest {
 
     private final SystemUserDAO systemUserDAO = mock(SystemUserDAO.class);
-    private final RegisterResource registerResource = new RegisterResource(systemUserDAO, 100L);
+    private final RegistrationResource registrationResource = new RegistrationResource(systemUserDAO, 100L);
     private final NewUser user = new NewUser("tester@test.com", "super$ecret", "super$ecret");
 
     @Test
     public void should_register_user() throws InvalidKeySpecException, NoSuchAlgorithmException {
         when(systemUserDAO.exists(user.getEmail())).thenReturn(false);
-        final AccessToken token = registerResource.register(user);
+        final AccessToken token = registrationResource.register(user);
 
         verify(systemUserDAO).exists(user.getEmail());
         verify(systemUserDAO).create(anyString(), anyString());
@@ -43,13 +43,13 @@ public class RegisterResourceTest {
 
     @Test(expected = WebApplicationException.class)
     public void should_not_register_user_if_password_is_not_confirmed() throws InvalidKeySpecException, NoSuchAlgorithmException {
-        registerResource.register(new NewUser("tester@test.com", "super$ecret", ""));
+        registrationResource.register(new NewUser("tester@test.com", "super$ecret", ""));
     }
 
     @Test(expected = WebApplicationException.class)
     public void should_not_register_user_if_user_is_already_registered() throws InvalidKeySpecException, NoSuchAlgorithmException {
         when(systemUserDAO.exists(user.getEmail())).thenReturn(true);
-        registerResource.register(user);
+        registrationResource.register(user);
     }
 
 }

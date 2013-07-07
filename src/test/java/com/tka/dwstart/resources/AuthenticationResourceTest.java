@@ -20,10 +20,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class LoginResourceTest {
+public class AuthenticationResourceTest {
 
     private final SystemUserDAO systemUserDAO = mock(SystemUserDAO.class);
-    private final LoginResource resource = new LoginResource(systemUserDAO, 100L);
+    private final AuthenticationResource resource = new AuthenticationResource(systemUserDAO, 100L);
     private final LoginUser loginUser = new LoginUser("tester@test.com", "super$ecret");
 
     @Test

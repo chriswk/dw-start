@@ -25,13 +25,13 @@ import static com.tka.dwstart.util.TokenUtil.getExpiresFromNow;
 @Path("/user/register")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public final class RegisterResource {
+public final class RegistrationResource {
 
-    private static final Logger LOG = LoggerFactory.getLogger(RegisterResource.class);
+    private static final Logger LOG = LoggerFactory.getLogger(RegistrationResource.class);
     private final SystemUserDAO systemUserDAO;
     private final long tokenTimeout;
 
-    public RegisterResource(final SystemUserDAO systemUserDAO, final long tokenTimeout) {
+    public RegistrationResource(final SystemUserDAO systemUserDAO, final long tokenTimeout) {
         this.systemUserDAO = systemUserDAO;
         this.tokenTimeout = tokenTimeout;
     }

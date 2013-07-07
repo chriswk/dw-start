@@ -3,6 +3,7 @@ package com.tka.dwstart.api;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public final class AccessToken {
+
     @JsonProperty
     private final String accessToken;
     @JsonProperty
