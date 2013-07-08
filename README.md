@@ -6,4 +6,8 @@ with [Dropwizard](http://dropwizard.codahale.com "Dropwizard").
 Provided are simple user authentication and registration resources, based on
 Dropwizards built-in authentication functionality.
 
+# Gradle
+To start application
+* ./gradlew run
+
 
